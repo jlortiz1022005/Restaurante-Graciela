@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurante Graciela | Pedidos por WhatsApp</title>
+  <meta name="description" content="Restaurante Graciela en Elixir, Saba, Colón. Arroz chino, pollo chuco, hamburguesas, pupusas, alitas y bebidas. Pedidos para recoger o domicilio por WhatsApp." />
+  <style>
+    :root{--rojo:#b91616;--rojo2:#7f0e0e;--dorado:#d8a52b;--crema:#fff8ed;--texto:#261818;--gris:#6b5f5f;--verde:#20a852;}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--crema);color:var(--texto)}
+    a{text-decoration:none;color:inherit}img{max-width:100%;display:block}.container{max-width:1120px;margin:auto;padding:0 18px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;border-radius:999px;font-weight:800;box-shadow:0 10px 22px #0002;border:0;cursor:pointer}.btn-red{background:var(--rojo);color:white}.btn-gold{background:var(--dorado);color:#401010}.btn-white{background:white;color:var(--rojo)}.btn-green{background:var(--verde);color:white}.small{font-size:.9rem;color:var(--gris)}
+    header{position:sticky;top:0;z-index:50;background:#fffdf9d9;backdrop-filter:blur(12px);border-bottom:1px solid #f0d8d8}.nav{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--rojo)}.brand img{width:52px;height:52px;object-fit:cover;border-radius:50%;box-shadow:0 4px 12px #0002}.links{display:flex;align-items:center;gap:18px;font-weight:700;color:#5b3333}.links a:hover{color:var(--rojo)}.menu-toggle{display:none;background:var(--rojo);color:white;border:0;border-radius:12px;padding:10px 12px;font-weight:900}
+    .hero{background:linear-gradient(135deg,rgba(127,14,14,.92),rgba(185,22,22,.88)),url('assets/combo-chino.jpeg') center/cover;min-height:680px;color:white;display:flex;align-items:center}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;padding:64px 0}.badge{display:inline-block;background:#ffffff25;border:1px solid #ffffff44;padding:10px 14px;border-radius:999px;font-weight:800}.hero h1{font-size:clamp(2.6rem,7vw,5.6rem);line-height:.95;margin:18px 0 14px}.hero p{font-size:1.18rem;line-height:1.65;max-width:650px;color:#fff7f0}.hero-card{background:white;color:var(--texto);border-radius:30px;padding:18px;box-shadow:0 24px 65px #0006}.hero-card img{height:310px;width:100%;object-fit:cover;border-radius:22px}.hero-card h2{font-size:1.8rem;margin:18px 0 6px;color:var(--rojo)}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    section{padding:70px 0}.section-title{text-align:center;margin-bottom:34px}.section-title span{font-weight:900;color:var(--rojo);letter-spacing:2px;text-transform:uppercase;font-size:.85rem}.section-title h2{font-size:clamp(2rem,5vw,3rem);margin:9px 0}.section-title p{color:var(--gris);max-width:680px;margin:auto;line-height:1.55}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border-radius:26px;padding:24px;box-shadow:0 10px 25px #7f0e0e12;border:1px solid #f2d8d8}.card .icon{font-size:2.2rem}.card h3{margin:13px 0 7px;color:var(--rojo)}.card p{line-height:1.55;color:var(--gris)}
+    .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.item{background:white;border-radius:28px;overflow:hidden;box-shadow:0 12px 28px #7f0e0e17;border:1px solid #f4d7d7;display:flex;flex-direction:column}.item img{height:230px;width:100%;object-fit:cover}.item-content{padding:20px;display:flex;flex-direction:column;gap:10px;flex:1}.item h3{font-size:1.45rem;margin:0;color:var(--rojo)}.item p{color:var(--gris);line-height:1.5;margin:0;flex:1}.notice{background:#fff3cf;border:1px solid #efd282;border-radius:22px;padding:18px;text-align:center;color:#684900;font-weight:700;margin-top:28px}
+    .order-wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;align-items:start}.order-info{background:linear-gradient(160deg,var(--rojo),var(--rojo2));color:white;border-radius:30px;padding:28px;box-shadow:0 18px 42px #7f0e0e2e}.order-info h2{font-size:2rem;margin-top:0}.order-info li{margin:14px 0;line-height:1.5}.form{background:white;border-radius:30px;padding:24px;box-shadow:0 16px 35px #7f0e0e1c;border:1px solid #f4d7d7}.field{margin-bottom:14px}.field label{display:block;font-weight:800;margin-bottom:7px;color:#4c2727}.field input,.field select,.field textarea{width:100%;padding:14px;border:1px solid #e7c7c7;border-radius:15px;font-size:1rem;background:#fffdfb}.field textarea{min-height:90px;resize:vertical}.form-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.log{margin-top:18px;background:#fff8ed;border:1px dashed #d9b4b4;border-radius:18px;padding:14px;font-size:.92rem;color:#5d4444}.log strong{color:var(--rojo)}
+    .location{display:grid;grid-template-columns:1fr 1fr;gap:22px}.loc-card{background:white;border-radius:28px;padding:26px;box-shadow:0 12px 28px #7f0e0e14}.map{border:0;width:100%;height:350px;border-radius:28px;box-shadow:0 12px 28px #7f0e0e14}.social{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    footer{background:#2a0909;color:white;padding:36px 0;text-align:center}.footer-logo{width:90px;margin:0 auto 12px;border-radius:50%}.footer-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:18px 0}.fixed-wa{position:fixed;right:18px;bottom:18px;z-index:80;background:var(--verde);color:white;border-radius:999px;padding:15px 18px;font-weight:900;box-shadow:0 12px 26px #0004}
+    @media(max-width:850px){.links{display:none;position:absolute;top:72px;left:0;right:0;background:white;padding:14px 20px;flex-direction:column;align-items:flex-start}.links.open{display:flex}.menu-toggle{display:block}.hero{min-height:auto}.hero-grid,.order-wrap,.location{grid-template-columns:1fr}.cards,.menu-grid{grid-template-columns:1fr}.hero-card img{height:230px}.form-actions{grid-template-columns:1fr}.hero-actions{flex-direction:column}.btn{width:100%}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#inicio"><img src="assets/logo.png" alt="Logo Restaurante Graciela"><span>Restaurante Graciela</span></a>
+      <button class="menu-toggle" onclick="document.querySelector('.links').classList.toggle('open')">Menú</button>
+      <nav class="links">
+        <a href="#menu">Menú</a><a href="#pedido">Pedir</a><a href="#domicilio">Domicilio</a><a href="#ubicacion">Ubicación</a><a href="https://www.facebook.com/perla.m.santos.9" target="_blank">Facebook</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">🍚 Elixir, Saba, Colón</span>
+          <h1>Sabor abundante para compartir.</h1>
+          <p>En Restaurante Graciela preparamos arroz chino, pollo chuco, hamburguesas, alitas, pupusas y bebidas. Haz tu pedido por WhatsApp para recoger o solicitar domicilio.</p>
+          <div class="hero-actions">
+            <a class="btn btn-green" href="https://wa.me/50499760621?text=Hola,%20quiero%20hacer%20un%20pedido%20para%20recoger%20en%20Restaurante%20Graciela." target="_blank">🛍️ Pedido para recoger</a>
+            <a class="btn btn-gold" href="https://wa.me/50499760621?text=Hola,%20quiero%20hacer%20un%20pedido%20a%20domicilio%20en%20Restaurante%20Graciela.%20Mi%20direccion%20es:" target="_blank">🚗 Pedir a domicilio</a>
+          </div>
+          <p class="small" style="color:#ffe7e7;margin-top:16px">Los precios pueden variar. Confirma precio actualizado, disponibilidad y tiempo de entrega por WhatsApp.</p>
+        </div>
+        <div class="hero-card">
+          <img src="assets/hamburguesa.jpeg" alt="Hamburguesa de Restaurante Graciela">
+          <h2>Pedidos rápidos por WhatsApp</h2>
+          <p class="small">Horario: lunes a domingo de 9:00 AM a 9:00 PM.</p>
+          <a class="btn btn-red" style="margin-top:14px;width:100%" href="#pedido">Hacer pedido ahora</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="domicilio">
+      <div class="container">
+        <div class="cards">
+          <div class="card"><div class="icon">🛍️</div><h3>Para recoger</h3><p>Haz tu pedido por WhatsApp y pasa por él cuando esté listo.</p></div>
+          <div class="card"><div class="icon">🚗</div><h3>Domicilio</h3><p>Zona actual: Elixir y Saba. Próximamente se agregarán más zonas.</p></div>
+          <div class="card"><div class="icon">⏰</div><h3>Horario</h3><p>Lunes a domingo, de 9:00 AM a 9:00 PM.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" style="background:#fff">
+      <div class="container">
+        <div class="section-title"><span>Nuestro menú</span><h2>Elige tu antojo</h2><p>El menú no muestra precios fijos para evitar confusiones. Escríbenos por WhatsApp y confirma el precio actualizado.</p></div>
+        <div class="menu-grid">
+          <article class="item"><img src="assets/combo-chino.jpeg" alt="Combo de arroz chino y noodles"><div class="item-content"><h3>Combo chino</h3><p>Arroz chino acompañado de noodles, ideal para compartir.</p><button class="btn btn-red" onclick="selectDish('Combo chino')">Pedir o consultar</button></div></article>
+          <article class="item"><img src="assets/arroz-chino.jpg" alt="Arroz chino"><div class="item-content"><h3>Arroz chino</h3><p>El plato principal de la casa, abundante y con sabor casero.</p><button class="btn btn-red" onclick="selectDish('Arroz chino')">Pedir o consultar</button></div></article>
+          <article class="item"><img src="assets/pollo-chuco.jpg" alt="Pollo chuco"><div class="item-content"><h3>Pollo chuco</h3><p>Crujiente, cargado de salsas y perfecto para disfrutar en familia.</p><button class="btn btn-red" onclick="selectDish('Pollo chuco')">Pedir o consultar</button></div></article>
+          <article class="item"><img src="assets/hamburguesa.jpeg" alt="Hamburguesa"><div class="item-content"><h3>Hamburguesas</h3><p>Una opción deliciosa para pedir rápido, recoger o recibir en casa.</p><button class="btn btn-red" onclick="selectDish('Hamburguesa')">Pedir o consultar</button></div></article>
+          <article class="item"><img src="assets/pupusas.jpg" alt="Pupusas"><div class="item-content"><h3>Pupusas</h3><p>Sabor tradicional, servidas con encurtido y salsa.</p><button class="btn btn-red" onclick="selectDish('Pupusas')">Pedir o consultar</button></div></article>
+          <article class="item"><img src="assets/pollo-chuco-2.jpg" alt="Alitas y comidas rápidas"><div class="item-content"><h3>Alitas y más</h3><p>Consulta disponibilidad de alitas y otras opciones del día.</p><button class="btn btn-red" onclick="selectDish('Alitas')">Pedir o consultar</button></div></article>
+          <article class="item"><div style="height:230px;background:linear-gradient(135deg,#0c4da2,#e31b23);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem">🥤</div><div class="item-content"><h3>Bebidas Pepsi</h3><p>Consulta disponibilidad de Pepsi y otros productos de la familia Pepsi.</p><button class="btn btn-red" onclick="selectDish('Bebidas Pepsi')">Consultar bebida</button></div></article>
+          <article class="item"><div style="height:230px;background:linear-gradient(135deg,#d71920,#751010);display:flex;align-items:center;justify-content:center;color:white;font-size:4rem">🥤</div><div class="item-content"><h3>Bebidas Coca-Cola</h3><p>Consulta disponibilidad de Coca-Cola y otros productos de la familia Coca-Cola.</p><button class="btn btn-red" onclick="selectDish('Bebidas Coca-Cola')">Consultar bebida</button></div></article>
+        </div>
+        <div class="notice">Los precios pueden cambiar. Para confirmar precio, disponibilidad o domicilio, contáctanos por WhatsApp.</div>
+      </div>
+    </section>
+
+    <section id="pedido">
+      <div class="container order-wrap">
+        <div class="order-info">
+          <h2>Haz tu pedido</h2>
+          <p>Completa el formulario y se abrirá WhatsApp con el mensaje listo para enviar.</p>
+          <ul><li>El pedido puede ser para recoger o a domicilio.</li><li>La web guarda un registro básico en este dispositivo.</li><li>El precio final se confirma por WhatsApp.</li></ul>
+          <p><strong>WhatsApp:</strong><br>9976-0621 / 9672-2537</p>
+        </div>
+        <form class="form" onsubmit="sendOrder(event)">
+          <div class="field"><label>Nombre del cliente</label><input id="nombre" required placeholder="Escribe tu nombre"></div>
+          <div class="field"><label>Teléfono</label><input id="telefono" required placeholder="Ej. 9999-9999"></div>
+          <div class="field"><label>Platillo o bebida</label><select id="platillo" required><option value="">Selecciona una opción</option><option>Combo chino</option><option>Arroz chino</option><option>Pollo chuco</option><option>Hamburguesa</option><option>Alitas</option><option>Pupusas</option><option>Bebidas Pepsi</option><option>Bebidas Coca-Cola</option><option>Otro / consultar</option></select></div>
+          <div class="field"><label>Cantidad</label><input id="cantidad" required placeholder="Ej. 2 órdenes"></div>
+          <div class="field"><label>Tipo de pedido</label><select id="tipo" required><option>Recoger en restaurante</option><option>Domicilio</option></select></div>
+          <div class="field"><label>Dirección o referencia</label><textarea id="direccion" placeholder="Si es domicilio, escribe dirección o punto de referencia"></textarea></div>
+          <div class="field"><label>Notas adicionales</label><textarea id="notas" placeholder="Ej. sin picante, con salsa aparte, hora aproximada"></textarea></div>
+          <div class="form-actions"><button class="btn btn-green" type="submit">Enviar a WhatsApp</button><button class="btn btn-gold" type="button" onclick="downloadLog()">Descargar registro</button></div>
+          <div class="log" id="logBox"><strong>Registro local:</strong> aquí aparecerá el último pedido guardado en este dispositivo.</div>
+        </form>
+      </div>
+    </section>
+
+    <section id="ubicacion" style="background:#fff">
+      <div class="container location">
+        <div class="loc-card"><h2>Ubicación y contacto</h2><p><strong>Aldea de Elixir, Saba, Colón, Honduras.</strong></p><p>Coordenadas: 15°32'21.3&quot;N 86°16'39.9&quot;W</p><p><strong>Horario:</strong> lunes a domingo, 9:00 AM - 9:00 PM</p><p><strong>Domicilio:</strong> Elixir y Saba. Próximamente más zonas.</p><div class="social"><a class="btn btn-red" href="https://www.google.com/maps?q=15.53925,-86.27775" target="_blank">📍 Cómo llegar</a><a class="btn btn-gold" href="https://www.facebook.com/perla.m.santos.9" target="_blank">📘 Facebook</a></div></div>
+        <iframe class="map" loading="lazy" allowfullscreen src="https://www.google.com/maps?q=15.53925,-86.27775&output=embed"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container"><img class="footer-logo" src="assets/logo.png" alt="Logo Restaurante Graciela"><h2>Restaurante Graciela</h2><p>Espero que disfruten.</p><div class="footer-actions"><a class="btn btn-white" href="tel:+50499760621">Llamar 9976-0621</a><a class="btn btn-gold" href="https://wa.me/50496722537" target="_blank">WhatsApp 9672-2537</a></div><p class="small" style="color:#e7caca">© Restaurante Graciela. Sitio web para pedidos y contacto.</p></div></footer>
+  <a class="fixed-wa" href="https://wa.me/50499760621?text=Hola,%20quiero%20hacer%20un%20pedido%20en%20Restaurante%20Graciela." target="_blank">WhatsApp</a>
+
+  <script>
+    const mainPhone='50499760621';
+    function selectDish(dish){document.getElementById('platillo').value=dish;document.getElementById('pedido').scrollIntoView({behavior:'smooth'});}
+    function sendOrder(e){e.preventDefault();const order={fecha:new Date().toLocaleString(),nombre:val('nombre'),telefono:val('telefono'),platillo:val('platillo'),cantidad:val('cantidad'),tipo:val('tipo'),direccion:val('direccion'),notas:val('notas'),estado:'Pendiente de confirmar'};const orders=JSON.parse(localStorage.getItem('pedidosGraciela')||'[]');orders.push(order);localStorage.setItem('pedidosGraciela',JSON.stringify(orders));document.getElementById('logBox').innerHTML='<strong>Último pedido guardado:</strong><br>'+order.fecha+' - '+order.nombre+' - '+order.platillo+' - '+order.tipo;const msg=`Hola, quiero hacer un pedido en Restaurante Graciela.%0A%0ANombre: ${enc(order.nombre)}%0ATelefono: ${enc(order.telefono)}%0APlatillo/Bebida: ${enc(order.platillo)}%0ACantidad: ${enc(order.cantidad)}%0ATipo de pedido: ${enc(order.tipo)}%0ADireccion/Referencia: ${enc(order.direccion)}%0ANotas: ${enc(order.notas)}%0A%0APor favor, confirmen precio actualizado, disponibilidad y tiempo de entrega.`;window.open(`https://wa.me/${mainPhone}?text=${msg}`,'_blank');}
+    function val(id){return document.getElementById(id).value.trim()}function enc(t){return encodeURIComponent(t||'')}
+    function downloadLog(){const orders=JSON.parse(localStorage.getItem('pedidosGraciela')||'[]');if(!orders.length){alert('Aún no hay pedidos guardados en este dispositivo.');return}const headers=['fecha','nombre','telefono','platillo','cantidad','tipo','direccion','notas','estado'];const csv=[headers.join(',')].concat(orders.map(o=>headers.map(h=>'"'+String(o[h]||'').replaceAll('"','""')+'"').join(','))).join('\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='registro-pedidos-restaurante-graciela.csv';a.click();}
+  </script>
+</body>
+</html>
